@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Báo giá Cửa lưới</title>
+    <link rel="stylesheet" href="./public/style.css">
+    <script src="./public/script.js" defer></script>
+    <script src="./public/export-pdf.js" defer></script>
+    <script src="./public/export-excel.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.2.0/exceljs.min.js"></script>
+
+</head>
+
+<body>
+    <div class="content">
+        <img src="https://i.imgur.com/vfwvNd4.jpg" alt="Mô tả hình ảnh">
+        <h2 style="text-align: center">BÁO GIÁ CỬA LƯỚI CHỐNG MUỖI</h2>
+        <h3 style="text-align: center">Số: <span id="maDonhang"></span></h3>
+        <div id="hopdong-container" style="text-align: center; display: none;">
+            <h3>Mã đơn hàng: <span id="maHopdong"></span></h3>
+        </div>
+        <table class="info-table" id="content">
+        </table>
+        <table class="bordered-table">
+            <tr style="background-color: #78b47ac7; color: black">
+                <th class="borderedcol-1" rowspan="2">STT</th>
+                <th class="borderedcol-2-head" rowspan="2">Vị trí lắp đặt</th>
+                <th class="borderedcol-3-head" rowspan="2">Mã sản phẩm</th>
+                <th class="borderedcol-4-head" rowspan="2">Diễn giải</th>
+                <th class="borderedcol-13" colspan="2">Kích thước</th>
+                <th class="borderedcol-7" rowspan="2">Diện tích<br>(m<sup>2</sup>)</th>
+                <th class="borderedcol-8" rowspan="2">Số<br>lượng<br>(bộ)</th>
+                <th class="borderedcol-9" rowspan="2">ĐVT</th>
+                <th class="borderedcol-10" rowspan="2">Khối<br>lượng</th>
+                <th class="borderedcol-11-head" rowspan="2">Đơn giá<br>(VNĐ/ĐVT)</th>
+                <th class="borderedcol-12-head" rowspan="2">Thành tiền<br>(VNĐ)</th>
+            </tr>
+            <tr style="background-color: #78b47ac7; color: black">
+                <th class="borderedcol-5">Rộng<br>(mm)</th>
+                <th class="borderedcol-6">Cao<br>(mm)</th>
+            </tr>
+
+            <tbody id="itemTableBody">
+                <!-- Rows will be added dynamically here -->
+            </tbody>
+            <tr>
+                <th style="text-align: left" colspan="7">Cộng</th>
+                <th style="text-align: center"><span id="tongSobo"></span></th>
+                <th style="text-align: center"><b>Bộ</b></th>
+                <th></th>
+                <th></th>
+                <th style="text-align: right"><span id="congnpp"></span></th>
+            </tr>
+            <tr id="rowChietKhau">
+                <th style="text-align: left" colspan="7">Chiết khấu</th>
+                <th style="text-align: center"><span id="mucChietkhaunpp">%</span></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th style="text-align: right"><span id="giatriChietkhaunpp"></span></th>
+            </tr>
+            <tr id="rowPhiVanChuyen">
+                <th style="text-align: left" colspan="7">Phí vận chuyển lắp đặt</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th style="text-align: right"><span id="phiVanchuyenlapdatnpp"></span></th>
+            </tr>
+            <tr id="rowThueGTGT">
+                <th style="text-align: left" colspan="7">Thuế GTGT</th>
+                <th style="text-align: center"><span id="mucthueGTGTnpp">%</span></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th style="text-align: right"><span id="thueGTGTnpp"></span></th>
+            </tr>
+            <tr id="rowTamUng">
+                <th style="text-align: left" colspan="7">Tạm ứng</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th style="text-align: right"><span id="tamUngnpp"></span></th>
+            </tr>
+            <tr>
+                <th style="text-align: left" colspan="7">Số tiền còn phải thanh toán</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th style="text-align: right"><span id="sotienConthieunpp"></span></th>
+            </tr>
+            <tr>
+                <th style="text-align: left" colspan="12">Bằng chữ: <span id="sotienBangchu"></span></th>
+            </tr>
+        </table>
+        <p><b>Ghi chú:</b></p>
+        <div id="contentfooter"></div>
+        <div id="payment-content" style="display: none;">
+            <table>
+                <tr>
+                    <td style="width: 50%">
+                        <img id="qr-code" alt="QR Code" />
+                    </td>
+                    <td style="width: 50%">
+                        <p>- Thông tin chuyển khoản:<br>
+                            - Số tài khoản: 19050356270019<br>
+                            - Ngân hàng: Techcombank - Chi nhánh Thái Bình<br>
+                            - Chủ tài khoản: TRINH XUAN THINH</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <button id="export-pdf" class="button-pdf">Tải PDF</button>
+    <button id="export-excel" class="button-excel">Tải Excel</button>
+
+</body>
+
+</html>
