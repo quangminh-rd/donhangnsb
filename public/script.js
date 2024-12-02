@@ -295,7 +295,7 @@ async function searchInSheet(spreadsheetId, range, maDonhangURI) {
                     mucthueGTGTnpp: row[39] || '', // Cột AN
                     thueGTGTnpp: row[40] || '', // Cột AO
                     tamUngnpp: row[41] || '', // Cột AP
-                    sotienConthieunpp: row[42] || '', // Cột AQ
+                    sotienPhaithanhtoannpp: row[42] || '', // Cột AQ
                 };
 
                 // Xử lý dữ liệu tìm được
@@ -311,12 +311,15 @@ async function searchInSheet(spreadsheetId, range, maDonhangURI) {
 }
 
 function processFoundData(orderDetails) {
+    // Tính toán giá trị sotienConthieu
+    const sotienConthieunpp = formatNumber(orderDetails.sotienPhaithanhtoannpp) - formatNumber(orderDetails.tamUngnpp);
+
     // Định dạng và chuyển đổi số tiền
-    const formattedSotien = formatNumber(orderDetails.sotienConthieunpp || '0');
     const doctien = new DocTienBangChu();
-    const sotienBangchu = doctien.doc(formattedSotien);
+    const sotienBangchu = doctien.doc(sotienConthieunpp);
 
     // Cập nhật giá trị sotienBangchu vào orderDetails
+    orderDetails.sotienConthieunpp = sotienConthieunpp.toLocaleString('vi-VN', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
     orderDetails.sotienBangchu = sotienBangchu;
 
     // Cập nhật DOM
