@@ -555,18 +555,20 @@ function displayConditions() {
     // Trích xuất các giá trị cần thiết từ data
     const phuongThucban = orderDetails.phuongThucban || '';
     const donviPhutrach = orderDetails.donviPhutrach || '';
+    const thueGTGTnpp = orderDetails.thueGTGTnpp || '';
+    const phiVanchuyenlapdatnpp = orderDetails.phiVanchuyenlapdatnpp || '';
 
     let outputHTML = ""; // Đổi tên biến từ htmlContent thành outputHTML
 
     // Điều kiện cho thuế GTGT
-    if (thueGTGTnpp === 0) {
+    if (thueGTGTnpp === "0") {
         outputHTML += `<p>1. Giá trên đã bao gồm thuế GTGT.</p>`;
     } else {
         outputHTML += `<p>1. Giá trên chưa bao gồm thuế GTGT.</p>`;
     }
 
     // Điều kiện cho phí vận chuyển và phương thức bán
-    if ((phiVanchuyenlapdatnpp === "" || phiVanchuyenlapdatnpp === 0) && phuongThucban !== "Bán lẻ") {
+    if ((phiVanchuyenlapdatnpp === "" || phiVanchuyenlapdatnpp === "0") && phuongThucban !== "Bán lẻ") {
         outputHTML += `<p>2. Giá trên chưa bao gồm phí vận chuyển, lắp đặt.</p>`;
     } else {
         outputHTML += `<p>2. Giá trên đã bao gồm phí vận chuyển, lắp đặt.</p>`;
