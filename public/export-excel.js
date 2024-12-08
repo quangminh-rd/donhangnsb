@@ -152,14 +152,14 @@ document.getElementById('export-excel').addEventListener('click', async function
             row.getCell(11).value = parseFloat(formatNumber(item.dongianpp));
             row.getCell(12).value = parseFloat(formatNumber(item.giabannpp));
         });
-        if (orderDetails.thueGTGTnpp === 0) {
+        if (orderDetails.thueGTGTnpp === '0') {
             worksheet.getCell('A519').value = '1. Giá trên chưa bao gồm thuế GTGT.';
         } else {
             worksheet.getCell('A519').value = '1. Giá trên đã bao gồm thuế GTGT.';
         }
 
         // Điều kiện cho phí vận chuyển và phương thức bán
-        if ((orderDetails.phiVanchuyenlapdatnpp === "" || orderDetails.phiVanchuyenlapdatnpp === 0) && orderDetails.phuongThucban !== "Bán lẻ") {
+        if ((orderDetails.phiVanchuyenlapdatnpp === '' || orderDetails.phiVanchuyenlapdatnpp === '0') && orderDetails.phuongThucban !== "Bán lẻ") {
             worksheet.getCell('A520').value = '2. Giá trên chưa bao gồm phí vận chuyển, lắp đặt.';
         } else {
             worksheet.getCell('A520').value = '2. Giá trên đã bao gồm phí vận chuyển, lắp đặt.';
