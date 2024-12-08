@@ -118,37 +118,44 @@ document.getElementById('export-excel').addEventListener('click', async function
             worksheet.getCell('H8').value = 'CSKH:';
             worksheet.getCell('J8').value = '1900 0282';
         }
-        worksheet.getCell('H512').value = orderDetails.tongSobo || '';
-        worksheet.getCell('L512').value = formatNumber(orderDetails.congnpp || '');
-        worksheet.getCell('H513').value = orderDetails.mucChietkhaunpp || '';
-        worksheet.getCell('L513').value = formatNumber(orderDetails.giatriChietkhaunpp || '');
-        worksheet.getCell('L514').value = formatNumber(orderDetails.phiVanchuyenlapdatnpp || '');
-        worksheet.getCell('H515').value = `${orderDetails.mucthueGTGTnpp || ''}%`;
-        worksheet.getCell('L515').value = formatNumber(orderDetails.thueGTGTnpp || '');
-        worksheet.getCell('L516').value = formatNumber(orderDetails.tamUngnpp || '');
-        worksheet.getCell('L517').value = formatNumber(orderDetails.sotienConthieunpp || '');
+        worksheet.getCell('H512').value = orderDetails.tongSobo ? parseFloat(orderDetails.tongSobo) : 0;
+        worksheet.getCell('L512').value = orderDetails.congnpp ? parseFloat(formatNumber(orderDetails.congnpp)) : 0;
+        worksheet.getCell('H513').value = orderDetails.mucChietkhaunpp ? parseFloat(formatNumber(orderDetails.mucChietkhaunpp)) : 0;
+        worksheet.getCell('L513').value = orderDetails.giatriChietkhaunpp ? parseFloat(formatNumber(orderDetails.giatriChietkhaunpp)) : 0;
+        worksheet.getCell('L514').value = orderDetails.phiVanchuyenlapdatnpp ? parseFloat(formatNumber(orderDetails.phiVanchuyenlapdatnpp)) : 0;
+        worksheet.getCell('H515').value = orderDetails.mucthueGTGTnpp ? parseFloat(formatNumber(orderDetails.mucthueGTGTnpp)) : 0;
+        worksheet.getCell('L515').value = orderDetails.thueGTGTnpp ? parseFloat(formatNumber(orderDetails.thueGTGTnpp)) : 0;
+        worksheet.getCell('L516').value = orderDetails.tamUngnpp ? parseFloat(formatNumber(orderDetails.tamUngnpp)) : 0;
+        worksheet.getCell('L517').value = orderDetails.sotienConthieunpp ? parseFloat(formatNumber(orderDetails.sotienConthieunpp)) : 0;
         worksheet.getCell('A518').value = `Bằng chữ: ${orderDetails.sotienBangchu || ''}`;
+
+        function formatWithCommas(numberString) {
+            if (!numberString) return '';
+            // Bỏ dấu phân cách hàng nghìn và thay dấu phẩy thập phân bằng dấu chấm
+            const num = numberString.replace(/\./g, '').replace(',', '.');
+            return num; // Trả về chuỗi số có định dạng chuẩn
+        }
         // Điền chi tiết sản phẩm vào Excel
         let startRow = 12; // Ví dụ: bắt đầu từ dòng 12
         orderItems.forEach((item, index) => {
             const row = worksheet.getRow(startRow + index);
-            row.getCell(1).value = item.sttTrongdon;
+            row.getCell(1).value = parseFloat(formatNumber(item.sttTrongdon));
             row.getCell(2).value = item.vitriLapdat;
             row.getCell(3).value = item.maSanphamid;
             row.getCell(4).value = item.diengiai;
-            row.getCell(5).value = formatNumber(item.chieuRong);
-            row.getCell(6).value = formatNumber(item.chieuCao);
-            row.getCell(7).value = item.dienTich;
-            row.getCell(8).value = item.soLuong;
+            row.getCell(5).value = parseFloat(formatNumber(item.chieuRong || '0')) || '';
+            row.getCell(6).value = parseFloat(formatNumber(item.chieuCao));
+            row.getCell(7).value = parseFloat(formatWithCommas(item.dienTich));
+            row.getCell(8).value = parseFloat(formatNumber(item.soLuong));
             row.getCell(9).value = item.dvt;
-            row.getCell(10).value = item.khoiLuong;
-            row.getCell(11).value = formatNumber(item.dongianpp);
-            row.getCell(12).value = formatNumber(item.giabannpp);
+            row.getCell(10).value = parseFloat(formatWithCommas(item.khoiLuong));
+            row.getCell(11).value = parseFloat(formatNumber(item.dongianpp));
+            row.getCell(12).value = parseFloat(formatNumber(item.giabannpp));
         });
         if (orderDetails.thueGTGTnpp === 0) {
-            worksheet.getCell('A519').value = '1. Giá trên đã bao gồm thuế GTGT.';
-        } else {
             worksheet.getCell('A519').value = '1. Giá trên chưa bao gồm thuế GTGT.';
+        } else {
+            worksheet.getCell('A519').value = '1. Giá trên đã bao gồm thuế GTGT.';
         }
 
         // Điều kiện cho phí vận chuyển và phương thức bán
@@ -184,19 +191,19 @@ document.getElementById('export-excel').addEventListener('click', async function
         }
 
         // Kiểm tra và ẩn các dòng từ L513 đến L516 nếu giá trị trong các ô đó là 0 hoặc trống
-        if (worksheet.getCell('L513').value === '0' || worksheet.getCell('L513').value === '') {
+        if (worksheet.getCell('L513').value === 0 || worksheet.getCell('L513').value === '') {
             worksheet.getRow(513).hidden = true; // Ẩn dòng 513
         }
 
-        if (worksheet.getCell('L514').value === '0' || worksheet.getCell('L514').value === '') {
+        if (worksheet.getCell('L514').value === 0 || worksheet.getCell('L514').value === '') {
             worksheet.getRow(514).hidden = true; // Ẩn dòng 514
         }
 
-        if (worksheet.getCell('L515').value === '0' || worksheet.getCell('L515').value === '') {
+        if (worksheet.getCell('L515').value === 0 || worksheet.getCell('L515').value === '') {
             worksheet.getRow(515).hidden = true; // Ẩn dòng 515
         }
 
-        if (worksheet.getCell('L516').value === '0' || worksheet.getCell('L516').value === '') {
+        if (worksheet.getCell('L516').value === 0 || worksheet.getCell('L516').value === '') {
             worksheet.getRow(516).hidden = true; // Ẩn dòng 516
         }
 

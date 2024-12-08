@@ -132,12 +132,6 @@ function formatNumber(numberString) {
     return formatted.replace('.', ',');
 }
 
-function formatWithCommas(numberString) {
-    if (!numberString) return '';
-    const num = numberString.replace(',', '.');
-    return parseFloat(num).toLocaleString('it-IT');
-}
-
 const SPREADSHEET_ID_1 = '1_VjjzKwaUdjxsOPdLOGHzcc0b8oyQsj4_Duw_7xmmWo';
 const RANGE_1 = 'tong_hop_don_hang_24!A:AU';
 const RANGE_CHITIET_1 = 'tong_hop_don_hang_chi_tiet_24!C:Y';
