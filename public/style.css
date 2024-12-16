@@ -190,11 +190,42 @@ img {
 }
 
 .button-excel {
-    background-color: #007BFF;
+    background-color: #0c9c07;
     color: white;
     padding: 15px 30px;
     border: none;
-    border-radius: 25px;
+    width: 180px;
+    border-radius: 50px;
+    /* Bo tròn góc */
+    font-size: 16px;
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    z-index: 10;
+    /* Cố định ở dưới cùng */
+    left: 50%;
+    /* Căn giữa */
+    transform: translateX(-50%);
+    /* Căn giữa chính xác */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    /* Bóng mờ phía dưới */
+    transition: background-color 0.3s ease;
+    opacity: 0.9;
+    white-space: nowrap;
+    /* Ngăn nội dung xuống dòng */
+}
+
+.button-excel:hover {
+    background-color: #03580e;
+}
+
+.button-excel-pcy {
+    background-color: #0c9c07;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    width: 180px;
+    border-radius: 50px;
     /* Bo tròn góc */
     font-size: 16px;
     cursor: pointer;
@@ -214,8 +245,8 @@ img {
     /* Ngăn nội dung xuống dòng */
 }
 
-.button-excel:hover {
-    background-color: #0056b3;
+.button-excel-pcy:hover {
+    background-color: #03580e;
 }
 
 .button-pdf {
@@ -223,7 +254,8 @@ img {
     color: white;
     padding: 15px 30px;
     border: none;
-    border-radius: 25px;
+    width: 180px;
+    border-radius: 50px;
     /* Bo tròn góc */
     font-size: 16px;
     cursor: pointer;
@@ -263,6 +295,10 @@ img {
     }
 
     .button-excel {
+        display: none;
+    }
+
+    .button-excel-pcy {
         display: none;
     }
 
@@ -459,11 +495,12 @@ img {
     }
 
     .button-excel {
-        background-color: #007BFF;
+        background-color: #0c9c07;
         color: white;
         padding: 15px 30px;
         border: none;
-        border-radius: 25px;
+        width: 130px;
+        border-radius: 50px;
         /* Bo tròn góc */
         font-size: 16px;
         cursor: pointer;
@@ -471,7 +508,7 @@ img {
         bottom: 20px;
         z-index: 10;
         /* Cố định ở dưới cùng */
-        left: 70%;
+        left: 50%;
         /* Căn giữa */
         transform: translateX(-50%);
         /* Căn giữa chính xác */
@@ -484,15 +521,16 @@ img {
     }
 
     .button-excel:hover {
-        background-color: #0056b3;
+        background-color: #03580e;
     }
 
-    .button-pdf {
-        background-color: #f30d0d;
+    .button-excel-pcy {
+        background-color: #0c9c07;
         color: white;
         padding: 15px 30px;
         border: none;
-        border-radius: 25px;
+        width: 130px;
+        border-radius: 50px;
         /* Bo tròn góc */
         font-size: 16px;
         cursor: pointer;
@@ -500,7 +538,37 @@ img {
         bottom: 20px;
         z-index: 10;
         /* Cố định ở dưới cùng */
-        left: 30%;
+        left: 80%;
+        /* Căn giữa */
+        transform: translateX(-50%);
+        /* Căn giữa chính xác */
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        /* Bóng mờ phía dưới */
+        transition: background-color 0.3s ease;
+        opacity: 0.9;
+        white-space: nowrap;
+        /* Ngăn nội dung xuống dòng */
+    }
+
+    .button-excel-pcy:hover {
+        background-color: #03580e;
+    }
+
+    .button-pdf {
+        background-color: #f30d0d;
+        color: white;
+        padding: 15px 30px;
+        border: none;
+        width: 130px;
+        border-radius: 50px;
+        /* Bo tròn góc */
+        font-size: 16px;
+        cursor: pointer;
+        position: fixed;
+        bottom: 20px;
+        z-index: 10;
+        /* Cố định ở dưới cùng */
+        left: 20%;
         /* Căn giữa */
         transform: translateX(-50%);
         /* Căn giữa chính xác */

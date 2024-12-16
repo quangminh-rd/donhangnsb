@@ -1,7 +1,7 @@
 document.getElementById('export-excel').addEventListener('click', async function () {
     // Tải template Excel từ server
     try {
-        const response = await fetch('./template.xlsx');
+        const response = await fetch('./template_baogia.xlsx');
         if (!response.ok) throw new Error('Không thể tải template.');
         const buffer = await response.arrayBuffer();
 
