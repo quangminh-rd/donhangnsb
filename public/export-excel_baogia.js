@@ -1,4 +1,4 @@
-document.getElementById('export-excel').addEventListener('click', async function () {
+document.getElementById('export-excel_baogia').addEventListener('click', async function () {
     // Tải template Excel từ server
     try {
         const response = await fetch('./template_baogia.xlsx');
