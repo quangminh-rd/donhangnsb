@@ -587,11 +587,10 @@ function displayConditions() {
                                 <p>4. Tạm ứng 50% tổng giá trị đơn hàng, thanh toán hết số còn lại sau khi nghiệm thu bàn giao.</p>
                                 <p>5. Lắp đặt sau 5 đến 7 ngày làm việc, kể từ ngày nhận được tiền tạm ứng lần 1.</p>
                                 <p>6. Thời gian bảo hành:</p>
-                                <p style="padding-left: 20px;"> - Bảo hành 2 năm sản phẩm cửa lưới BS-Polyester, cửa rèm vải visor, cửa rèm tổ ong và phụ kiện lắp đồng bộ
-                                    với cửa: tay nắm kèm khóa, động cơ cuốn, điều khiển, vật tư nhựa.</p>
-                                <p style="padding-left: 20px;"> - Bảo hành 3 năm sản phẩm cửa lưới sợi thủy tinh, cửa lưới HQ-Polyester, cửa lưới PVC, cửa xếp lưới nhôm, cửa
-                                    xếp nhựa PC, cửa lưới thép chống cắt.</p>
-                                <p style="padding-left: 20px;"> - Bảo hành 5 năm sản phẩm cửa sử dụng lưới Inox.</p>
+                                <p style="padding-left: 20px;"> - Bảo hành 2 năm phụ kiện lắp đồng bộ với cửa, tay nắm, bánh xe, ổ khóa, động cơ, điều khiển, phụ kiện nhựa, …</p>
+                                <p style="padding-left: 20px;"> - Bảo hành 2 năm sản phẩm Cửa xếp rèm tổ ong; Cửa xếp 2 trong 1/ xếp xích 2 trong 1 kết hợp lưới và rèm.</p>
+                                <p style="padding-left: 20px;"> - Bảo hành 3 năm sản phẩm Cửa lưới sợi thủy tinh; Cửa xếp/ xếp xích lưới PL, PVC, PET; Cửa xếp lưới nhôm, lá nhựa PC.</p>
+                                <p style="padding-left: 20px;"> - BBảo hành 5 năm sản phẩm Cửa lưới Inox.</p>
                             `;
     }
 
