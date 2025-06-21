@@ -590,7 +590,7 @@ function displayConditions() {
                                 <p style="padding-left: 20px;"> - Bảo hành 2 năm phụ kiện lắp đồng bộ với cửa, tay nắm, bánh xe, ổ khóa, động cơ, điều khiển, phụ kiện nhựa, …</p>
                                 <p style="padding-left: 20px;"> - Bảo hành 2 năm sản phẩm Cửa xếp rèm tổ ong; Cửa xếp 2 trong 1/ xếp xích 2 trong 1 kết hợp lưới và rèm.</p>
                                 <p style="padding-left: 20px;"> - Bảo hành 3 năm sản phẩm Cửa lưới sợi thủy tinh; Cửa xếp/ xếp xích lưới PL, PVC, PET; Cửa xếp lưới nhôm, lá nhựa PC.</p>
-                                <p style="padding-left: 20px;"> - BBảo hành 5 năm sản phẩm Cửa lưới Inox.</p>
+                                <p style="padding-left: 20px;"> - Bảo hành 5 năm sản phẩm Cửa lưới Inox.</p>
                             `;
     }
 
