@@ -123,11 +123,11 @@ document.getElementById('export-excel_baogia').addEventListener('click', async f
         worksheet.getCell('H513').value = orderDetails.mucChietkhaunpp ? parseFloat(formatNumber(orderDetails.mucChietkhaunpp)) : 0;
         worksheet.getCell('L513').value = orderDetails.giatriChietkhaunpp ? parseFloat(formatNumber(orderDetails.giatriChietkhaunpp)) : 0;
         worksheet.getCell('L514').value = orderDetails.phiVanchuyenlapdatnpp ? parseFloat(formatNumber(orderDetails.phiVanchuyenlapdatnpp)) : 0;
-        worksheet.getCell('H515').value = orderDetails.mucthueGTGTnpp ? parseFloat(formatNumber(orderDetails.mucthueGTGTnpp)) : 0;
-        worksheet.getCell('L515').value = orderDetails.thueGTGTnpp ? parseFloat(formatNumber(orderDetails.thueGTGTnpp)) : 0;
-        worksheet.getCell('L516').value = orderDetails.tamUngnpp ? parseFloat(formatNumber(orderDetails.tamUngnpp)) : 0;
-        worksheet.getCell('L517').value = orderDetails.sotienConthieunpp ? parseFloat(formatNumber(orderDetails.sotienConthieunpp)) : 0;
-        worksheet.getCell('A518').value = `Bằng chữ: ${orderDetails.sotienBangchu || ''}`;
+        worksheet.getCell('L515').value = orderDetails.mucthueGTGTnpp ? parseFloat(formatNumber(orderDetails.mucthueGTGTnpp)) : 0;
+        worksheet.getCell('L516').value = orderDetails.thueGTGTnpp ? parseFloat(formatNumber(orderDetails.thueGTGTnpp)) : 0;
+        worksheet.getCell('L517').value = orderDetails.tamUngnpp ? parseFloat(formatNumber(orderDetails.tamUngnpp)) : 0;
+        worksheet.getCell('L518').value = orderDetails.sotienConthieunpp ? parseFloat(formatNumber(orderDetails.sotienConthieunpp)) : 0;
+        worksheet.getCell('A519').value = `Bằng chữ: ${orderDetails.sotienBangchu || ''}`;
 
         function formatWithCommas(numberString) {
             if (!numberString) return '';
@@ -152,33 +152,46 @@ document.getElementById('export-excel_baogia').addEventListener('click', async f
             row.getCell(11).value = parseFloat(formatNumber(item.dongianpp));
             row.getCell(12).value = parseFloat(formatNumber(item.giabannpp));
         });
-        if (worksheet.getCell('L515').value === 0 || worksheet.getCell('L515').value === '') {
-            worksheet.getCell('A519').value = '1. Giá trên chưa bao gồm thuế GTGT.';
+
+        if (orderDetails.donviPhutrach !== "BP. BH1") {
+            worksheet.getCell('A520').value = '1. Giá trên chưa bao gồm thuế GTGT.';
         } else {
-            worksheet.getCell('A519').value = '1. Giá trên đã bao gồm thuế GTGT.';
+            worksheet.getCell('A520').value = '1. Giá trên đã bao gồm thuế GTGT.';
         }
 
         // Điều kiện cho phí vận chuyển và phương thức bán
-        if ((worksheet.getCell('L514').value === 0 || worksheet.getCell('L514').value === '') && orderDetails.phuongThucban !== "Bán lẻ") {
-            worksheet.getCell('A520').value = '2. Giá trên chưa bao gồm phí vận chuyển, lắp đặt.';
+        if ((orderDetails.phiVanchuyenlapdatnpp === "" || orderDetails.phiVanchuyenlapdatnpp === "0") && orderDetails.donviPhutrach === "BP. BH1" && orderDetails.phuongThucban == "Bán lẻ") {
+            worksheet.getCell('A521').value = '2. Giá trên đã bao gồm phí vận chuyển, lắp đặt tại nội thành Hà Nội.';
+        } else if (orderDetails.phiVanchuyenlapdatnpp !== '' && orderDetails.phiVanchuyenlapdatnpp !== "0" && orderDetails.donviPhutrach !== "BP. BH1") {
+            worksheet.getCell('A521').value = '2. Giá trên đã bao gồm phí vận chuyển, lắp đặt.';
         } else {
-            worksheet.getCell('A520').value = '2. Giá trên đã bao gồm phí vận chuyển, lắp đặt.';
+            worksheet.getCell('A521').value = '2. Giá trên chưa bao gồm phí vận chuyển, lắp đặt.';
         }
 
         // Điều kiện cho đơn vị phụ trách và phương thức bán
         if (orderDetails.donviPhutrach === "BP. BH1" && orderDetails.phuongThucban === "Bán đại lý") {
-            worksheet.getCell('A521').value = '3. Giá trên có hiệu lực 30 ngày kể từ ngày phát hành.';
-            worksheet.getCell('A522').value = '4. Thanh toán 100% tổng giá trị đơn hàng trước khi giao hàng.';
-            worksheet.getCell('A523').value = '5. Giao hàng sau 3 đến 5 ngày làm việc, kể từ ngày chốt đơn.';
-            worksheet.getCell('A524').value = '6. Thời gian bảo hành 12 tháng theo tiêu chuẩn của nhà sản xuất.';
+            worksheet.getCell('A522').value = '3. Giá trên có hiệu lực 30 ngày kể từ ngày phát hành.';
+            worksheet.getCell('A523').value = '4. Thanh toán 100% tổng giá trị đơn hàng trước khi giao hàng.';
+            worksheet.getCell('A524').value = '5. Giao hàng sau 3 đến 5 ngày làm việc, kể từ ngày chốt đơn.';
+            worksheet.getCell('A525').value = '6. Thời gian bảo hành 12 tháng theo tiêu chuẩn của nhà sản xuất.';
+        } else if (donviPhutrach !== "BP. BH1") {
+            worksheet.getCell('A522').value = '3. Giá trên có hiệu lực 30 ngày kể từ ngày phát hành.';
+            worksheet.getCell('A523').value = '4. Tạm ứng 50% tổng giá trị đơn hàng, thanh toán hết số còn lại sau khi nghiệm thu bàn giao.';
+            worksheet.getCell('A524').value = '5. Giao hàng sau 3 đến 5 ngày làm việc.';
+            worksheet.getCell('A525').value = '6. Thời gian bảo hành:';
+            worksheet.getCell('A526').value = ' - Bảo hành 2 năm phụ kiện lắp đồng bộ với cửa, tay nắm, bánh xe, ổ khóa, động cơ, điều khiển, phụ kiện nhựa, …';
+            worksheet.getCell('A527').value = ' - Bảo hành 2 năm sản phẩm Cửa xếp rèm tổ ong; Cửa xếp 2 trong 1/ xếp xích 2 trong 1 kết hợp lưới và rèm.';
+            worksheet.getCell('A528').value = ' - Bảo hành 3 năm sản phẩm Cửa lưới sợi thủy tinh; Cửa xếp/ xếp xích lưới PL, PVC, PET; Cửa xếp lưới nhôm, lá nhựa PC.';
+            worksheet.getCell('A529').value = ' - Bảo hành 5 năm sản phẩm Cửa lưới Inox.';
         } else {
-            worksheet.getCell('A521').value = '3. Giá trên có hiệu lực 30 ngày kể từ ngày phát hành.';
-            worksheet.getCell('A522').value = '4. Tạm ứng 50% tổng giá trị đơn hàng, thanh toán hết số còn lại sau khi nghiệm thu bàn giao.';
-            worksheet.getCell('A523').value = '5. Lắp đặt sau 5 đến 7 ngày làm việc, kể từ ngày nhận được tiền tạm ứng lần 1.';
-            worksheet.getCell('A524').value = '6. Thời gian bảo hành:';
-            worksheet.getCell('A525').value = ' - Bảo hành 2 năm sản phẩm cửa lưới BS-Polyester, cửa rèm vải visor, cửa rèm tổ ong và phụ kiện lắp đồng bộ với cửa: tay nắm kèm khóa, động cơ cuốn, điều khiển, vật tư nhựa.';
-            worksheet.getCell('A526').value = ' - Bảo hành 3 năm sản phẩm cửa lưới sợi thủy tinh, cửa lưới HQ-Polyester, cửa lưới PVC, cửa xếp lưới nhôm, cửa xếp nhựa PC, cửa lưới thép chống cắt.';
-            worksheet.getCell('A527').value = ' - Bảo hành 5 năm sản phẩm cửa sử dụng lưới Inox.';
+            worksheet.getCell('A522').value = '3. Giá trên có hiệu lực 30 ngày kể từ ngày phát hành.';
+            worksheet.getCell('A523').value = '4. Tạm ứng 50% tổng giá trị đơn hàng, thanh toán hết số còn lại sau khi nghiệm thu bàn giao.';
+            worksheet.getCell('A524').value = '5. Lắp đặt sau 5 đến 7 ngày làm việc, kể từ ngày nhận được tiền tạm ứng lần 1.';
+            worksheet.getCell('A525').value = '6. Thời gian bảo hành:';
+            worksheet.getCell('A526').value = ' - Bảo hành 2 năm phụ kiện lắp đồng bộ với cửa, tay nắm, bánh xe, ổ khóa, động cơ, điều khiển, phụ kiện nhựa, …';
+            worksheet.getCell('A527').value = ' - Bảo hành 2 năm sản phẩm Cửa xếp rèm tổ ong; Cửa xếp 2 trong 1/ xếp xích 2 trong 1 kết hợp lưới và rèm.';
+            worksheet.getCell('A528').value = ' - Bảo hành 3 năm sản phẩm Cửa lưới sợi thủy tinh; Cửa xếp/ xếp xích lưới PL, PVC, PET; Cửa xếp lưới nhôm, lá nhựa PC.';
+            worksheet.getCell('A529').value = ' - Bảo hành 5 năm sản phẩm Cửa lưới Inox.';
         }
 
         for (let rowNum = 12; rowNum <= 511; rowNum++) {
