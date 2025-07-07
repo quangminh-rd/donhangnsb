@@ -174,7 +174,7 @@ document.getElementById('export-excel_baogia').addEventListener('click', async f
             worksheet.getCell('A523').value = '4. Thanh toán 100% tổng giá trị đơn hàng trước khi giao hàng.';
             worksheet.getCell('A524').value = '5. Giao hàng sau 3 đến 5 ngày làm việc, kể từ ngày chốt đơn.';
             worksheet.getCell('A525').value = '6. Thời gian bảo hành 12 tháng theo tiêu chuẩn của nhà sản xuất.';
-        } else if (donviPhutrach !== "BP. BH1") {
+        } else if (orderDetails.donviPhutrach !== "BP. BH1") {
             worksheet.getCell('A522').value = '3. Giá trên có hiệu lực 30 ngày kể từ ngày phát hành.';
             worksheet.getCell('A523').value = '4. Tạm ứng 50% tổng giá trị đơn hàng, thanh toán hết số còn lại sau khi nghiệm thu bàn giao.';
             worksheet.getCell('A524').value = '5. Giao hàng sau 3 đến 5 ngày làm việc.';
