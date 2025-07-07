@@ -154,7 +154,7 @@ document.getElementById('export-excel_baogia').addEventListener('click', async f
         });
 
         if (orderDetails.donviPhutrach !== "BP. BH1") {
-            worksheet.getCell('A520').value = '1. Giá trên chưa bao gồm thuế GTGT.';
+            worksheet.getCell('A520').value = '1. Giá trên đã bao gồm thuế GTGT.';
         } else {
             worksheet.getCell('A520').value = '1. Giá trên đã bao gồm thuế GTGT.';
         }
