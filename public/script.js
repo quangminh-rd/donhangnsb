@@ -141,6 +141,11 @@ const SPREADSHEET_ID_2 = '1FLsjyTBi_JfkcDomkgq1ChLWUtrnKv-PfGpPJwt7Zek';
 const RANGE_2 = 'tong_hop_don_hang_25!A:AU';
 const RANGE_CHITIET_2 = 'tong_hop_don_hang_chi_tiet_25!C:Y';
 
+
+const SPREADSHEET_ID_3 = '13uT2jzgYWVbKrLxH5qHizAEGUZCONwbQmHzwfV5dZZQ';
+const RANGE_3 = 'tong_hop_don_hang_26!A:AU';
+const RANGE_CHITIET_3 = 'tong_hop_don_hang_chi_tiet_26!C:Y';
+
 const API_KEY = 'AIzaSyA9g2qFUolpsu3_HVHOebdZb0NXnQgXlFM';
 
 // Lấy giá trị từ URI sau dấu "?" cho các tham số cụ thể
@@ -240,8 +245,12 @@ async function findRowInSheet(maDonhangURI) {
 
         // Nếu không tìm thấy, tìm trong bảng tính thứ hai
         const foundInSecondSheet = await searchInSheet(SPREADSHEET_ID_2, RANGE_2, maDonhangURI);
-        if (!foundInSecondSheet) {
-            updateContent(`No matching data found for "${maDonhangURI}" in both spreadsheets.`);
+        if (foundInSecondSheet) return;
+
+        // Nếu không tìm thấy, tìm trong bảng tính thứ ba
+        const foundInThirdSheet = await searchInSheet(SPREADSHEET_ID_3, RANGE_3, maDonhangURI);
+        if (!foundInThirdSheet) {
+            updateContent(`No matching data found for "${maDonhangURI}" in all spreadsheets.`);
         }
     } catch (error) {
         updateContent('Error fetching data: ' + error.message);
@@ -620,8 +629,12 @@ async function findDetailsInSheet(maDonhangURI) {
 
         // Nếu không tìm thấy, tìm trong bảng tính thứ hai
         const foundInSecondSheet = await searchDetailsInSheet(SPREADSHEET_ID_2, RANGE_CHITIET_2, maDonhangURI);
-        if (!foundInSecondSheet) {
-            updateContent('No matching detail data found in both spreadsheets.');
+        if (foundInSecondSheet) return;
+
+        // Nếu không tìm thấy, tìm trong bảng tính thứ ba
+        const foundInThirdSheet = await searchDetailsInSheet(SPREADSHEET_ID_3, RANGE_CHITIET_3, maDonhangURI);
+        if (!foundInThirdSheet) {
+            updateContent('No matching detail data found in all spreadsheets.');
         }
     } catch (error) {
         console.error('Error fetching detail data:', error);
