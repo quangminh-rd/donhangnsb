@@ -78,7 +78,7 @@ DocTienBangChu.prototype.doc = function (SoTien) {
     ViTri[3] = Math.floor(so / 1000000000);
     if (isNaN(ViTri[3]))
         ViTri[3] = "0";
-    so = so - parseFloat(ViTri[3].toString()) * 1000000000;
+    so = so - parseFloat(ViTri[3].toString()) * 1000000000000;
     ViTri[2] = parseInt(so / 1000000);
     if (isNaN(ViTri[2]))
         ViTri[2] = "0";
@@ -237,21 +237,78 @@ function updateContent(message) {
 let orderDetails = null; // Thông tin đơn hàng chính
 let orderItems = [];
 
+// Hàm xác định thứ tự tìm kiếm dựa trên mã đơn hàng
+function getSearchOrder(maDonhangURI) {
+    if (maDonhangURI.includes('-26')) {
+        // Ưu tiên tìm trong 2026 trước
+        return [
+            { spreadsheetId: SPREADSHEET_ID_3, range: RANGE_3 },
+            { spreadsheetId: SPREADSHEET_ID_2, range: RANGE_2 },
+            { spreadsheetId: SPREADSHEET_ID_1, range: RANGE_1 }
+        ];
+    } else if (maDonhangURI.includes('-25')) {
+        // Ưu tiên tìm trong 2025 trước
+        return [
+            { spreadsheetId: SPREADSHEET_ID_2, range: RANGE_2 },
+            { spreadsheetId: SPREADSHEET_ID_3, range: RANGE_3 },
+            { spreadsheetId: SPREADSHEET_ID_1, range: RANGE_1 }
+        ];
+    } else if (maDonhangURI.includes('-24')) {
+        // Ưu tiên tìm trong 2024 trước
+        return [
+            { spreadsheetId: SPREADSHEET_ID_1, range: RANGE_1 },
+            { spreadsheetId: SPREADSHEET_ID_2, range: RANGE_2 },
+            { spreadsheetId: SPREADSHEET_ID_3, range: RANGE_3 }
+        ];
+    } else {
+        // Mặc định tìm tuần tự từ 1 đến 3
+        return [
+            { spreadsheetId: SPREADSHEET_ID_1, range: RANGE_1 },
+            { spreadsheetId: SPREADSHEET_ID_2, range: RANGE_2 },
+            { spreadsheetId: SPREADSHEET_ID_3, range: RANGE_3 }
+        ];
+    }
+}
+
+// Hàm xác định thứ tự tìm kiếm chi tiết dựa trên mã đơn hàng
+function getDetailSearchOrder(maDonhangURI) {
+    if (maDonhangURI.includes('-26')) {
+        return [
+            { spreadsheetId: SPREADSHEET_ID_3, range: RANGE_CHITIET_3 },
+            { spreadsheetId: SPREADSHEET_ID_2, range: RANGE_CHITIET_2 },
+            { spreadsheetId: SPREADSHEET_ID_1, range: RANGE_CHITIET_1 }
+        ];
+    } else if (maDonhangURI.includes('-25')) {
+        return [
+            { spreadsheetId: SPREADSHEET_ID_2, range: RANGE_CHITIET_2 },
+            { spreadsheetId: SPREADSHEET_ID_3, range: RANGE_CHITIET_3 },
+            { spreadsheetId: SPREADSHEET_ID_1, range: RANGE_CHITIET_1 }
+        ];
+    } else if (maDonhangURI.includes('-24')) {
+        return [
+            { spreadsheetId: SPREADSHEET_ID_1, range: RANGE_CHITIET_1 },
+            { spreadsheetId: SPREADSHEET_ID_2, range: RANGE_CHITIET_2 },
+            { spreadsheetId: SPREADSHEET_ID_3, range: RANGE_CHITIET_3 }
+        ];
+    } else {
+        return [
+            { spreadsheetId: SPREADSHEET_ID_1, range: RANGE_CHITIET_1 },
+            { spreadsheetId: SPREADSHEET_ID_2, range: RANGE_CHITIET_2 },
+            { spreadsheetId: SPREADSHEET_ID_3, range: RANGE_CHITIET_3 }
+        ];
+    }
+}
+
 async function findRowInSheet(maDonhangURI) {
     try {
-        // Tìm trong bảng tính đầu tiên
-        const found = await searchInSheet(SPREADSHEET_ID_1, RANGE_1, maDonhangURI);
-        if (found) return;
+        const searchOrder = getSearchOrder(maDonhangURI);
 
-        // Nếu không tìm thấy, tìm trong bảng tính thứ hai
-        const foundInSecondSheet = await searchInSheet(SPREADSHEET_ID_2, RANGE_2, maDonhangURI);
-        if (foundInSecondSheet) return;
-
-        // Nếu không tìm thấy, tìm trong bảng tính thứ ba
-        const foundInThirdSheet = await searchInSheet(SPREADSHEET_ID_3, RANGE_3, maDonhangURI);
-        if (!foundInThirdSheet) {
-            updateContent(`No matching data found for "${maDonhangURI}" in all spreadsheets.`);
+        for (const sheet of searchOrder) {
+            const found = await searchInSheet(sheet.spreadsheetId, sheet.range, maDonhangURI);
+            if (found) return;
         }
+
+        updateContent(`No matching data found for "${maDonhangURI}" in all spreadsheets.`);
     } catch (error) {
         updateContent('Error fetching data: ' + error.message);
         console.error('Fetch Error:', error);
@@ -623,19 +680,14 @@ function displayConditions() {
 // Tìm chi tiết trong bảng tính
 async function findDetailsInSheet(maDonhangURI) {
     try {
-        // Tìm trong bảng tính đầu tiên
-        const found = await searchDetailsInSheet(SPREADSHEET_ID_1, RANGE_CHITIET_1, maDonhangURI);
-        if (found) return;
+        const searchOrder = getDetailSearchOrder(maDonhangURI);
 
-        // Nếu không tìm thấy, tìm trong bảng tính thứ hai
-        const foundInSecondSheet = await searchDetailsInSheet(SPREADSHEET_ID_2, RANGE_CHITIET_2, maDonhangURI);
-        if (foundInSecondSheet) return;
-
-        // Nếu không tìm thấy, tìm trong bảng tính thứ ba
-        const foundInThirdSheet = await searchDetailsInSheet(SPREADSHEET_ID_3, RANGE_CHITIET_3, maDonhangURI);
-        if (!foundInThirdSheet) {
-            updateContent('No matching detail data found in all spreadsheets.');
+        for (const sheet of searchOrder) {
+            const found = await searchDetailsInSheet(sheet.spreadsheetId, sheet.range, maDonhangURI);
+            if (found) return;
         }
+
+        updateContent('No matching detail data found in all spreadsheets.');
     } catch (error) {
         console.error('Error fetching detail data:', error);
         updateContent('Error fetching detail data.');
