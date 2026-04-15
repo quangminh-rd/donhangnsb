@@ -723,12 +723,18 @@ function displayDetailData(filteredRows) {
     const tableBody = document.getElementById('itemTableBody');
     tableBody.innerHTML = ''; // Xóa dữ liệu cũ nếu có
 
-    filteredRows.forEach(row => {
-        const item = extractDetailDataFromRow(row);;
+    filteredRows
+        .map(row => extractDetailDataFromRow(row))
+        .sort((a, b) => {
+            const sttA = parseInt(String(a.sttTrongdon || '').replace(/\D/g, ''), 10) || 0;
+            const sttB = parseInt(String(b.sttTrongdon || '').replace(/\D/g, ''), 10) || 0;
+            return sttA - sttB;
+        })
+        .forEach(item => {
 
-        // Kiểm tra giá trị của donviPhutrach
-        if (!item.maDonhangCT.includes("1C.029.01")) {
-            tableBody.innerHTML += `
+            // Kiểm tra giá trị của donviPhutrach
+            if (!item.maDonhangCT.includes("1C.029.01")) {
+                tableBody.innerHTML += `
                 <tr class="bordered-table">
                     <td class="borderedcol-1">${item.sttTrongdon || ''}</td>
                     <td class="borderedcol-2">${item.vitriLapdat || ''}</td>
@@ -744,8 +750,8 @@ function displayDetailData(filteredRows) {
                     <td class="borderedcol-12">${item.giabannpp || ''}</td>
                 </tr>
             `;
-        } else {
-            tableBody.innerHTML += `
+            } else {
+                tableBody.innerHTML += `
                 <tr class="bordered-table">
                     <td class="borderedcol-1">${item.sttTrongdon || ''}</td>
                     <td class="borderedcol-2">${item.vitriLapdat || ''}</td>
@@ -761,8 +767,8 @@ function displayDetailData(filteredRows) {
                     <td class="borderedcol-12">${item.giabannpp || ''}</td>
                 </tr>
             `;
-        }
-    });
+            }
+        });
 }
 
 
@@ -785,6 +791,7 @@ function extractDetailDataFromRow(row) {
         giabannpp: row[21],
     };
 }
+
 
 // Hàm cập nhật nội dung DOM
 function updateElement(elementId, value) {
