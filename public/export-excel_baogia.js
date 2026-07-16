@@ -173,25 +173,29 @@ document.getElementById('export-excel_baogia').addEventListener('click', async f
             worksheet.getCell('A522').value = '3. Giá trên có hiệu lực 30 ngày kể từ ngày phát hành.';
             worksheet.getCell('A523').value = '4. Thanh toán 100% tổng giá trị đơn hàng trước khi giao hàng.';
             worksheet.getCell('A524').value = '5. Giao hàng sau 3 đến 5 ngày làm việc, kể từ ngày chốt đơn.';
-            worksheet.getCell('A525').value = '6. Thời gian bảo hành 12 tháng theo tiêu chuẩn của nhà sản xuất.';
+            worksheet.getCell('A525').value = '6. Thời gian bảo hành:';
+            worksheet.getCell('A526').value = ' - Bảo hành 1 năm cho phụ kiện lắp đồng bộ với cửa: tay nắm kèm khóa, động cơ của cuốn, điều khiểu, vật tư nhựa.';
+            worksheet.getCell('A527').value = ' - Bảo hành 1 năm sản phẩm cửa rèm tổ ong.';
+            worksheet.getCell('A528').value = ' - Bảo hành 2 năm sản phẩm cửa lưới sợi thủy tinh; cửa lưới PET-Polyester; cửa lưới PL-Polyester.';
+            worksheet.getCell('A529').value = ' - Bảo hành 3 năm sản phẩm cửa  sử dụng lưới Inox - lưới thép.';
         } else if (orderDetails.donviPhutrach !== "BP. BH1") {
             worksheet.getCell('A522').value = '3. Giá trên có hiệu lực 30 ngày kể từ ngày phát hành.';
             worksheet.getCell('A523').value = '4. Tạm ứng 50% tổng giá trị đơn hàng, thanh toán hết số còn lại sau khi nghiệm thu bàn giao.';
             worksheet.getCell('A524').value = '5. Giao hàng sau 3 đến 5 ngày làm việc.';
             worksheet.getCell('A525').value = '6. Thời gian bảo hành:';
-            worksheet.getCell('A526').value = ' - Bảo hành 2 năm phụ kiện lắp đồng bộ với cửa, tay nắm, bánh xe, ổ khóa, động cơ, điều khiển, phụ kiện nhựa, …';
-            worksheet.getCell('A527').value = ' - Bảo hành 2 năm sản phẩm Cửa xếp rèm tổ ong; Cửa xếp 2 trong 1/ xếp xích 2 trong 1 kết hợp lưới và rèm.';
-            worksheet.getCell('A528').value = ' - Bảo hành 3 năm sản phẩm Cửa lưới sợi thủy tinh; Cửa xếp/ xếp xích lưới PL, PVC, PET; Cửa xếp lưới nhôm, lá nhựa PC.';
-            worksheet.getCell('A529').value = ' - Bảo hành 5 năm sản phẩm Cửa lưới Inox.';
+            worksheet.getCell('A526').value = ' - Bảo hành 2 năm cho phụ kiện lắp đồng bộ với cửa: tay nắm kèm khóa, động cơ của cuốn, điều khiểu, vật tư nhựa.';
+            worksheet.getCell('A527').value = ' - Bảo hành 2 năm sản phẩm cửa rèm tổ ong.';
+            worksheet.getCell('A528').value = ' - Bảo hành 3 năm sản phẩm cửa lưới sợi thủy tinh; cửa lưới PET-Polyester; cửa lưới PL-Polyester.';
+            worksheet.getCell('A529').value = ' - Bảo hành 5 năm sản phẩm cửa  sử dụng lưới Inox - lưới thép.';
         } else {
             worksheet.getCell('A522').value = '3. Giá trên có hiệu lực 30 ngày kể từ ngày phát hành.';
             worksheet.getCell('A523').value = '4. Tạm ứng 50% tổng giá trị đơn hàng, thanh toán hết số còn lại sau khi nghiệm thu bàn giao.';
             worksheet.getCell('A524').value = '5. Lắp đặt sau 5 đến 7 ngày làm việc, kể từ ngày nhận được tiền tạm ứng lần 1.';
             worksheet.getCell('A525').value = '6. Thời gian bảo hành:';
-            worksheet.getCell('A526').value = ' - Bảo hành 2 năm phụ kiện lắp đồng bộ với cửa, tay nắm, bánh xe, ổ khóa, động cơ, điều khiển, phụ kiện nhựa, …';
-            worksheet.getCell('A527').value = ' - Bảo hành 2 năm sản phẩm Cửa xếp rèm tổ ong; Cửa xếp 2 trong 1/ xếp xích 2 trong 1 kết hợp lưới và rèm.';
-            worksheet.getCell('A528').value = ' - Bảo hành 3 năm sản phẩm Cửa lưới sợi thủy tinh; Cửa xếp/ xếp xích lưới PL, PVC, PET; Cửa xếp lưới nhôm, lá nhựa PC.';
-            worksheet.getCell('A529').value = ' - Bảo hành 5 năm sản phẩm Cửa lưới Inox.';
+            worksheet.getCell('A526').value = ' - Bảo hành 2 năm cho phụ kiện lắp đồng bộ với cửa: tay nắm kèm khóa, động cơ của cuốn, điều khiểu, vật tư nhựa.';
+            worksheet.getCell('A527').value = ' - Bảo hành 2 năm sản phẩm cửa rèm tổ ong.';
+            worksheet.getCell('A528').value = ' - Bảo hành 3 năm sản phẩm cửa lưới sợi thủy tinh; cửa lưới PET-Polyester; cửa lưới PL-Polyester.';
+            worksheet.getCell('A529').value = ' - Bảo hành 5 năm sản phẩm cửa  sử dụng lưới Inox - lưới thép.';
         }
 
         for (let rowNum = 12; rowNum <= 511; rowNum++) {
