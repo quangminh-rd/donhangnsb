@@ -170,7 +170,7 @@ document.getElementById('export-excel_baogia').addEventListener('click', async f
 
         // Điều kiện cho đơn vị phụ trách và phương thức bán
         if (orderDetails.donviPhutrach === "BP. BH1" && orderDetails.phuongThucban === "Bán đại lý") {
-            worksheet.getCell('A522').value = '3. Giá trên có hiệu lực 30 ngày kể từ ngày phát hành.';
+            worksheet.getCell('A522').value = '3. Giá trên có hiệu lực 7 ngày kể từ ngày phát hành.';
             worksheet.getCell('A523').value = '4. Thanh toán 100% tổng giá trị đơn hàng trước khi giao hàng.';
             worksheet.getCell('A524').value = '5. Giao hàng sau 3 đến 5 ngày làm việc, kể từ ngày chốt đơn.';
             worksheet.getCell('A525').value = '6. Thời gian bảo hành:';
@@ -179,7 +179,7 @@ document.getElementById('export-excel_baogia').addEventListener('click', async f
             worksheet.getCell('A528').value = ' - Bảo hành 2 năm sản phẩm cửa lưới sợi thủy tinh; cửa lưới PET-Polyester; cửa lưới PL-Polyester.';
             worksheet.getCell('A529').value = ' - Bảo hành 3 năm sản phẩm cửa  sử dụng lưới Inox - lưới thép.';
         } else if (orderDetails.donviPhutrach !== "BP. BH1") {
-            worksheet.getCell('A522').value = '3. Giá trên có hiệu lực 30 ngày kể từ ngày phát hành.';
+            worksheet.getCell('A522').value = '3. Giá trên có hiệu lực 7 ngày kể từ ngày phát hành.';
             worksheet.getCell('A523').value = '4. Tạm ứng 50% tổng giá trị đơn hàng, thanh toán hết số còn lại sau khi nghiệm thu bàn giao.';
             worksheet.getCell('A524').value = '5. Giao hàng sau 3 đến 5 ngày làm việc.';
             worksheet.getCell('A525').value = '6. Thời gian bảo hành:';
@@ -188,7 +188,7 @@ document.getElementById('export-excel_baogia').addEventListener('click', async f
             worksheet.getCell('A528').value = ' - Bảo hành 3 năm sản phẩm cửa lưới sợi thủy tinh; cửa lưới PET-Polyester; cửa lưới PL-Polyester.';
             worksheet.getCell('A529').value = ' - Bảo hành 5 năm sản phẩm cửa  sử dụng lưới Inox - lưới thép.';
         } else {
-            worksheet.getCell('A522').value = '3. Giá trên có hiệu lực 30 ngày kể từ ngày phát hành.';
+            worksheet.getCell('A522').value = '3. Giá trên có hiệu lực 7 ngày kể từ ngày phát hành.';
             worksheet.getCell('A523').value = '4. Tạm ứng 50% tổng giá trị đơn hàng, thanh toán hết số còn lại sau khi nghiệm thu bàn giao.';
             worksheet.getCell('A524').value = '5. Lắp đặt sau 5 đến 7 ngày làm việc, kể từ ngày nhận được tiền tạm ứng lần 1.';
             worksheet.getCell('A525').value = '6. Thời gian bảo hành:';
